@@ -73,7 +73,8 @@ class ProductController extends Controller
 
         session()->forget('cart');
 
-        return "Added to db";
+        //return "Order done";
+        return redirect()->route('product');
         
 
     }

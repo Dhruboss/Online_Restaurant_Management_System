@@ -17,11 +17,12 @@
 
     <div class="col-md-4 form-group">
         <span>Email</span>
-        <input type="text" name="email" value="{{old('email')}}" class="form-control">
+        <input type="text" name="email" <?php if(isset($_COOKIE['remember'])) {echo $_COOKIE['remember'];} ?> value="<?php if(isset($_COOKIE['remember'])) {echo $_COOKIE['remember'];} ?>" class="form-control">
         @error('email')
             <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
+
     <div class="col-md-4 form-group">
         <span>Password</span>
         <input type="text" name="pass" value="{{old('pass')}}"class="form-control">

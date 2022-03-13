@@ -31,6 +31,8 @@
         <li class="nav-item"><a class="nav-link" href="{{route('home')}}"> home </a></li>
         <li class="nav-item"><a class="nav-link" href="{{route('product')}}"> product</a></li>
         <li class="nav-item"><a class="nav-link" href="{{route('login')}}"> login</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{route('signup')}}"> Signup</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{route('logout')}}"> logout</a></li>
         <li class="nav-item"><a class="nav-link" href="{{route('customer.myorders')}}"> My Orders</a></li>
     </ul>
   <div class="collapse navbar-collapse" id="main_nav">

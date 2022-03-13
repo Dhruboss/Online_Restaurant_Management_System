@@ -25,10 +25,13 @@ Route::get('/home', [PagesController::class, 'home'])->name('home');
 Route::get('/product', [ProductController::class, 'productlist'])->name('product');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'loginSubmit'])->name('login');
+Route::get('/signup', [CustomerController::class, 'signup'])->name('signup');
+Route::post('/signup', [CustomerController::class, 'signupsubmitted'])->name('signup');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/addtocart/{id}',[ProductController::class,'addtocart'])->name('products.addtocart');
 Route::get('/emptycart',[ProductController::class,'emptycart'])->name('products.emptycart');
 Route::get('/cart',[ProductController::class,'mycart'])->name('products.mycart');
-Route::post('/checkout',[ProductController::class,'checkout'])->name('checkout');
+Route::post('/checkout',[ProductController::class,'checkout'])->middleware('ValidCustomer')->name('checkout');
 
-Route::get('/customer/myorders',[CustomerController::class,'myorders'])->name('customer.myorders');
-Route::get('/customer/myorders/details/{id}',[CustomerController::class,'orderdetails'])->name('customer.myorders.details');
+Route::get('/customer/myorders',[CustomerController::class,'myorders'])->middleware('ValidCustomer')->name('customer.myorders');
+Route::get('/customer/myorders/details/{id}',[CustomerController::class,'orderdetails'])->middleware('ValidCustomer')->name('customer.myorders.details');

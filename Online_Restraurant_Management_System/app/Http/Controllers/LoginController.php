@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\login;
 use App\Models\customer;
+use Illuminate\Support\Facades\Cookie;
 use App\Http\Requests\StoreloginRequest;
 use App\Http\Requests\UpdateloginRequest;
 use Illuminate\Http\Request;
@@ -23,9 +24,24 @@ class LoginController extends Controller
         if($customer){
             session()->put('customer',$customer->c_id);
             //$request->session()->put('customer',$customer->name);
-            return view('pages.home')->with('customer', $customer);;
-        }
 
+            if ($request->remember) {
+                setcookie('remember',$request->email, time()+36000);
+                Cookie::queue('name',$customer->email."",time()+60);
+            }else{
+                setcookie('remember',"");
+                Cookie::queue('name',"");
+            }
+           // return redirect()->route('products.mycart');
+            return view('pages.home')->with('customer', $customer);
+        }
+        return redirect()->route('login');
+
+    }
+
+    public function logout(){
+        session()->flush();
+        return redirect()->route('login');
     }
 
 }
